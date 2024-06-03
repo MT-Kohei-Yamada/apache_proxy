@@ -1,0 +1,14 @@
+services:
+  proxy:
+    container_name: apache_proxy
+    image: "httpd:2.4"
+    restart: "always"
+    volumes:
+      - "./proxy-httpd.conf:/usr/local/apache2/conf/httpd.conf"
+    ports:
+      - "${PROXY_PORT:-8080}:80"
+    networks:
+      - "proxy"
+
+networks:
+  proxy:
